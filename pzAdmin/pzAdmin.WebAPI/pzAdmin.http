@@ -1,0 +1,6 @@
+@pzAdmin_HostAddress = http://localhost:5160
+
+GET {{pzAdmin_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
