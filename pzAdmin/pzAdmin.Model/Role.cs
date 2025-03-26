@@ -15,7 +15,7 @@ namespace pzAdmin.Model
 
             public string Name { get; set; }
 
-
+            public DateTime CreatTime { get; set; }
 
             [Navigate(NavigateType.OneToMany, nameof(User.RoleId))] // 一对多导航
             public List<User> Users { get; set; }

@@ -13,6 +13,6 @@ namespace pzAdmin.Service.MenuServ
 {
       public interface IMenuService : IBaseService<Menu>
       {
-
+            Task<List<OwnMenuRes>> GetOwnMenuListAsync(int roleId);
       }
 }

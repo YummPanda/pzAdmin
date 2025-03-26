@@ -55,7 +55,7 @@ namespace pzAdmin.Service.UserServ
                   var claims = new List<Claim>();
                   claims.Add(new Claim(ClaimTypes.Name, user.Name));
                   claims.Add(new Claim(ClaimTypes.Sid, user.Id.ToString()));
-
+                  claims.Add(new Claim(ClaimTypes.Role, user.RoleId.ToString()));
                   string token = JwtHelper.BuildJwtToken(claims, jwtOptions.Value);
                   res.Data = new LoginRes() { Token = token ,UserInfo=user};
                   res.Success = true;

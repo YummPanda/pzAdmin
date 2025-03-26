@@ -10,7 +10,7 @@ namespace pzAdmin.Repository.MenuRep
 {
       public interface IMenuRepository : IBaseRepository<Menu>
       {
-
+            Task<List<Menu>> GetOwnMenuByRole(int roleId);
       }
 
 }

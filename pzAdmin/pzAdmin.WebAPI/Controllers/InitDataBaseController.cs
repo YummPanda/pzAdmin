@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using pzAdmin.Common.req;
 using pzAdmin.Model;
 using SqlSugar;
 using System.Reflection;
@@ -102,6 +103,39 @@ namespace pzAdmin.WebAPI.Controllers
                   db.Insertable(groupMenu).ExecuteCommand();
                   db.Insertable(staffMenu).ExecuteCommand();
                   db.Insertable(orderMenu).ExecuteCommand();
+
+                  // ▼▼▼ 新增角色和权限关联部分 ▼▼▼
+                  // 创建超级管理员角色
+                  var superRole = new Role
+                  {
+                        Name = "超级管理员",
+                        CreatTime = DateTime.Now,
+                  };
+                  int roleId = db.Insertable(superRole).ExecuteReturnIdentity();
+
+                  // 获取所有菜单
+                  var allMenus = db.Queryable<Menu>().ToList();
+
+                  // 生成角色菜单关系（批量插入）
+                  var roleMenus = allMenus.Select(m => new RoleMenu
+                  {
+                        RoleId = roleId,
+                        MenuId = m.Id
+                  }).ToList();
+
+                  db.Insertable(roleMenus).ExecuteCommand();
+                  // ▲▲▲ 新增部分结束 ▲▲▲
+
+                  // 初始化管理员账号
+                  var newUser = new User
+                  {
+                        Id = Guid.NewGuid(),
+                        Name = "18632111251",
+                        Password = "a12345678",
+                        CreateTime = DateTime.Now,
+                        RoleId = 1
+                  };
+                  db.Insertable(newUser).ExecuteCommand();
 
             }
       }
