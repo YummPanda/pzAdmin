@@ -18,7 +18,7 @@ namespace pzAdmin.Model
             public string Password { get; set; }
             public DateTime CreateTime { get; set; }
 
-            [SugarColumn(ColumnName = "role_id", IsNullable = false)]
+            [SugarColumn(IsNullable = true)]
             public long RoleId { get; set; }
 
             [Navigate(NavigateType.OneToOne, nameof(RoleId))] // 一对一导航(实际是用户属于某个角色)
