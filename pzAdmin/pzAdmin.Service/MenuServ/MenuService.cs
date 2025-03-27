@@ -40,7 +40,7 @@ namespace pzAdmin.Service.MenuServ
                               Id = menu.Id,
                               Label = menu.Name,
                         };
-                        if (ownMenuListIds.Contains(menu.Id))
+                        if (!ownMenuListIds.Contains(menu.Id))
                         {
                               ownMenu.Disabled= true;
                         }
@@ -59,7 +59,7 @@ namespace pzAdmin.Service.MenuServ
                               Id = childMenu.Id,
                               Label = childMenu.Name,
                         };
-                        if (ownMenuListIds.Contains(childMenu.Id))
+                        if (!ownMenuListIds.Contains(childMenu.Id))
                         {
                               childOwnMenu.Disabled = true;
                         }
